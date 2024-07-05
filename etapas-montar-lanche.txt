@@ -19,23 +19,10 @@ etapa  8:  add DATA
 
 etapa  9:  fazer pedido div botao == Method
 etapa  10: Method pedido
-etapa  :
+etapa  11: v-if na div Pao 
 
-
-etapa  :
-etapa  :
-etapa  :
-etapa  :
-etapa  :
-
-etapa  :
-etapa  :
-etapa  :
-etapa  :
-etapa  :
-
-etapa  :
-etapa  :
-etapa  :
-etapa  :
-etapa  :
+etapa  12:  div  Dados cliente --- renderização condicional
+etapa  13: botao voltar para o lanche
+etapa  14: confirmar pedido
+etapa  15:  novo pedido / repetir
+etapa  16:  time out 
