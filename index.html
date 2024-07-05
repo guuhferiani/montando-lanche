@@ -43,7 +43,8 @@
                     </div>
                 </div>
                 <!-- etapa 4 -->
-                <div class="col-md-6" v-if="etapa == 1">
+                <div class="col-md-6" v-if="etapa == 1"> 
+                    <!-- v-if  etapa 11 -->
                     <!-- TIPO DO PÃO -->
                     <div class="row mt-2">
                         <div class="col">
@@ -134,7 +135,8 @@
                         </div>
                     </div>
                 </div>
-
+                    <!-- etapa 12 Dados cliente -->
+                    <!-- renderização condicional -->
                 <div class="col-md-6" v-if="etapa == 2">
                     <div class="row mt-2">
                         <div class="col">
@@ -153,6 +155,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- etapa 13 -->
                     <div class="row mt-2">
                         <div class="col d-flex justify-content-between">
                             <button type="button" class="btn btn-warning" @click="etapa -= 1">Voltar para o lanche</button>
@@ -160,7 +164,7 @@
                         </div>
                     </div>
                 </div>
-
+                <!-- etapa 14 -->
                 <div class="col-md-6" v-if="etapa == 3">
                     <div class="row mt-2">
                         <div class="col">
@@ -173,6 +177,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- etapa 15  -->
                     <div class="row mt-2">
                         <div class="col d-flex justify-content-between">
                             <button type="button" class="btn btn-primary" @click="etapa = 1">Repetir pedido</button>
@@ -191,16 +196,16 @@
         // ----- etapa 3 ---- */
         const vm = new Vue({  //convencão/padrão -- vm= ViewModel
             el: '#app', // ----- etapa 3 ---- */
-            // ----- etapa 8 ---- */
+            // ----- etapa 8  atributos ---- */
             data: {
                 inputTipoPao: '',  //input radio = vario
                 inputSaladas: [],  //input chechbox = [ ]
                 inputMolhos: [],
                 inputHamburguer: '',
-                etapa: 1,
-                inputNome: '',
+                etapa: 1, // v-if  etapa 11
+                inputNome: '',  // etapa 12
                 inputEndereco: '',
-                novoPedidoAssincrono: null
+                novoPedidoAssincrono: null  //etapa 16
             },
             // propriedades computadas -- reativas
             computed: {  // <!-- etapa 6 -->
@@ -257,26 +262,30 @@
                     }
                 }
             },
-            methods: {  //etapa 9 //10
+            //etapa 9 //10
+            methods: {  
                 fazerPedido() {
                     // se Pao e Carne definidos
                     if(this.inputTipoPao && this.inputHamburguer) {
-                        this.etapa = 2
+                        this.etapa = 2 //avança p/ etapa fechar pedido
                     } else {
                         alert('Você precisa selecionar no mínimo um pão e um hambúrguer')
                     }
                 },
+                // etapa 14
                 confirmarPedido() {
                     if(this.inputNome && this.inputEndereco) {
                         this.etapa = 3
 
                         //realizar uma requisição http enviado os dados do pedido para o back-end da aplicação
-
-                        this.novoPedidoAssincrono = setTimeout(() => this.novoPedido(), 7000)
+                        
+                        //etapa 16 
+                        this.novoPedidoAssincrono = setTimeout(() => this.novoPedido(), 5000)
                     } else {
                         alert('Você precisa informar o seu nome e endereço')
                     }
                 },
+                // etapa 15 -- views atributos 
                 novoPedido() {
                     this.etapa = 1
                     
@@ -288,6 +297,7 @@
                     this.inputEndereco = ''
                 }
             },
+            //etapa 16 
             watch: {
                 etapa(novoValor) {
                     if(novoValor == 1) {
