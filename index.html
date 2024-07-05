@@ -1,37 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Montando o Lanche</title>
+    <title>Monte o seu Lanche</title>
 
     <!-- VUE -->
     <script src="./vue.js"></script>
 
     <!-- BOOTSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- As a heading -->
+    <!-- As a heading -->  <!-- etapa 1 -->
     <nav class="navbar navbar-light bg-light">
-        <div class="container">
+        <div class="container justify-content-center">
         <span class="navbar-brand mb-0 h1">Monte o seu Lanche</span>
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container"> <!-- etapa 2 -->
 
-        <div id="app">
+        <div id="app"><!-- etapa 2 -->
 
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row"> 
+                <div class="col-md-6">  <!-- etapa 5 -->
                     <div class="row mt-2">
-                        <div class="col">
-                            <img :src="pao[0]">
+                        <div class="col">    <!-- propriedade computada -->
+                            <img :src="pao[0]">  <!-- sintaxe reduzida  == v-bind -->
                             <img :src="alface">
                             <img :src="ketchup">
                             <img :src="mostarda">
@@ -41,14 +42,17 @@
                         </div>
                     </div>
                 </div>
+                <!-- etapa 4 -->
                 <div class="col-md-6" v-if="etapa == 1">
                     <!-- TIPO DO PÃO -->
                     <div class="row mt-2">
                         <div class="col">
                             <div class="card">
                                 <div class="card-header">TIPO DO PÃO</div>
+                                <!-- TESTE {{inputTipoPao}} -->
                                 <div class="card-body">
                                     <div class="form-check form-check-inline">
+                                        <!-- ADD value e v-model = etapa 7 -->
                                         <input class="form-check-input" type="radio" value="gergelim" v-model="inputTipoPao">
                                         <label class="form-check-label">Gergelim</label>
                                     </div>
@@ -60,6 +64,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- etapa 4 -->
                     
                     <!-- SALADAS -->
                     <div class="row mt-2">
@@ -74,7 +79,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div><!-- etapa 4 -->
 
                     <!-- MOLHOS -->
                     <div class="row mt-2">
@@ -97,7 +102,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div><!-- etapa 4 -->
 
                     <!-- TIPO HAMBÚRGUER -->
                     <div class="row mt-2">
@@ -120,8 +125,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div><!-- etapa 4 -->
 
+                    <!-- etapa 9 -->
                     <div class="row mt-2">
                         <div class="col d-flex justify-content-end">
                             <button type="button" class="btn btn-primary" @click="fazerPedido()">Fazer pedido</button>
@@ -162,7 +168,7 @@
                                 <div class="card-header">PEDIDO CONFIRMADO</div>
                                 <div class="card-body">
                                     <p>Agora é só aguardar 10 minutinhos!</p>
-                                    <p>Vamos chamar vc em breve ;)</p>
+                                    <p>Vamos chamar vc em breve ;</p>
                                 </div>
                             </div>
                         </div>
@@ -180,12 +186,15 @@
 
     </div>
 
+    <!-- Instancia de Vue -->
     <script>
-        const vm = new Vue({
-            el: '#app',
+        // ----- etapa 3 ---- */
+        const vm = new Vue({  //convencão/padrão -- vm= ViewModel
+            el: '#app', // ----- etapa 3 ---- */
+            // ----- etapa 8 ---- */
             data: {
-                inputTipoPao: '',
-                inputSaladas: [],
+                inputTipoPao: '',  //input radio = vario
+                inputSaladas: [],  //input chechbox = [ ]
                 inputMolhos: [],
                 inputHamburguer: '',
                 etapa: 1,
@@ -193,8 +202,10 @@
                 inputEndereco: '',
                 novoPedidoAssincrono: null
             },
-            computed: {
-                pao() {
+            // propriedades computadas -- reativas
+            computed: {  // <!-- etapa 6 -->
+                pao() {   //array == lista/variedade de opções
+                    //switch para radio 
                     switch(this.inputTipoPao) {
                         case 'gergelim': 
                             return ['imagens/pao_gergelim_superior.png', 'imagens/pao_gergelim_inferior.png']
@@ -205,6 +216,8 @@
                     }
                     
                 },
+                // indice array teste 9  -- para checkbox
+                //metodo includes verificar se existe o item
                 alface() {
                     if(this.inputSaladas.includes('alface')) {
                         return 'imagens/alface.png'
@@ -244,8 +257,9 @@
                     }
                 }
             },
-            methods: {
+            methods: {  //etapa 9 //10
                 fazerPedido() {
+                    // se Pao e Carne definidos
                     if(this.inputTipoPao && this.inputHamburguer) {
                         this.etapa = 2
                     } else {
